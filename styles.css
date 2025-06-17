@@ -1,0 +1,19 @@
+body {
+  background: linear-gradient(to right, #e0f7fa, #ffffff);
+}
+
+input:focus, button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+  transition: box-shadow 0.3s ease;
+}
+
+#explicacion {
+  transition: all 0.3s ease;
+}
+
+canvas#grafica {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+}
