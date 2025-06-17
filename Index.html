@@ -7,17 +7,61 @@
 
   <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  
+
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- Estilos personalizados -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Animación de boletos -->
+  <style>
+    .boletos-fondo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .boleto {
+      position: absolute;
+      width: 40px;
+      height: 20px;
+      background: linear-gradient(to right, #facc15, #f59e0b);
+      border: 2px dashed #fff;
+      border-radius: 5px;
+      animation: flotar 10s infinite linear;
+      opacity: 0.8;
+      transform: rotate(45deg);
+    }
+
+    .boleto:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .boleto:nth-child(2) { left: 30%; animation-delay: 2s; }
+    .boleto:nth-child(3) { left: 50%; animation-delay: 4s; }
+    .boleto:nth-child(4) { left: 70%; animation-delay: 1s; }
+    .boleto:nth-child(5) { left: 90%; animation-delay: 3s; }
+
+    @keyframes flotar {
+      0% {
+        top: -10%;
+        transform: rotate(0deg);
+      }
+      100% {
+        top: 110%;
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center p-4">
+
   <h1 class="text-3xl font-bold text-blue-800 mb-6 text-center">🎟️ Simulador de Sorteo de Boletos Premiados</h1>
 
-  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md z-10">
     <label class="block mb-2 font-medium text-gray-700">Total de boletos (N):</label>
     <input type="number" id="total" value="100" class="w-full p-2 border rounded mb-4">
 
@@ -32,9 +76,18 @@
     </button>
   </div>
 
-  <canvas id="grafica" class="mt-10 w-full max-w-xl h-96"></canvas>
+  <canvas id="grafica" class="mt-10 w-full max-w-xl h-96 z-10"></canvas>
 
-  <div id="explicacion" class="mt-6 bg-white p-4 rounded shadow w-full max-w-2xl text-gray-700"></div>
+  <div id="explicacion" class="mt-6 bg-white p-4 rounded shadow w-full max-w-2xl text-gray-700 z-10"></div>
+
+  <!-- Fondo animado de boletos -->
+  <div class="boletos-fondo" aria-hidden="true">
+    <div class="boleto"></div>
+    <div class="boleto"></div>
+    <div class="boleto"></div>
+    <div class="boleto"></div>
+    <div class="boleto"></div>
+  </div>
 
   <script src="script.js"></script>
 </body>
